@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="card mt-4 my-3">
+        <div class="card-header">
+            <h2 class="d-flex justify-content-center fs-3">Ejemplo factura</h2>
+        </div>
+        <div class="card-body">
+            <app-invoice-view [id]="invoice.id" [name]="invoice.name"></app-invoice-view>
+            <div class="row my-3">
+                <div class="col">
+                    <app-client-view [client]="invoice.client"></app-client-view>
+                </div>
+                <div class="col">
+                    <app-company-view [company]="invoice.company"></app-company-view>
+                </div>
+            </div>
+            <app-list-items [items]="invoice.items" (removeEventEmitter)="removeItem($event)" ngSkipHydration></app-list-items>
+            
+            <total [total]="invoice.total"> </total>
+
+            <!-- forma de abrir y cerrar un componente -->
+            <form-item (addItemEventEmmiter)="addItem($event)"/>
+        </div>
+    </div>
+</div>
