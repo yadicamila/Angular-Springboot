@@ -4,13 +4,13 @@ import { Product } from '../models/product';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CartItem } from '../models/cartItem';
-import { CartComponent } from './cart/cart.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CartModalComponent } from './cart-modal/cart-modal.component';
 
 @Component({
   selector: 'cart-app',
   standalone: true,
-  imports: [CatalogoComponent,CartComponent,NavbarComponent],
+  imports: [CatalogoComponent,NavbarComponent,CartModalComponent],
   templateUrl: './cart-app.component.html',
 })
 export class CartAppComponent implements OnInit {
@@ -63,7 +63,7 @@ export class CartAppComponent implements OnInit {
     // guardar datos en sessionStorage
       sessionStorage.setItem('cart',JSON.stringify(this.items))
   }
-  openCart():void{
+  openCloseCart():void{
     this.showCart=!this.showCart
   }
 }
