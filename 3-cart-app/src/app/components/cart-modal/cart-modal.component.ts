@@ -11,7 +11,7 @@ import { CartComponent } from '../cart/cart.component';
 })
 export class CartModalComponent {
 @Input() items!:CartItem[]
-@Input() total!:number
+// @Input() total!:number
 @Output() removeProductEventEmitter: EventEmitter<number>=new EventEmitter();
   
 

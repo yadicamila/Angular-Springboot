@@ -20,7 +20,7 @@ export class CartAppComponent implements OnInit {
   // estos son los items del carro de compras
   items:CartItem[]=[]
 
-  total!:number;
+  // total!:number;
   showCart:boolean=false;
   constructor(private service:ProductService){
 
@@ -28,7 +28,7 @@ export class CartAppComponent implements OnInit {
   ngOnInit(): void {
     this.products=this.service.findAll()
     this.items=JSON.parse(sessionStorage.getItem('cart') || '[]');
-    this.calculateTotal();
+    // this.calculateTotal();
   }
   onAddCart(product:Product){
     // para validar si el elememnto ya existe en el carrito de compras
@@ -45,24 +45,28 @@ export class CartAppComponent implements OnInit {
 
       this.items=[...this.items,{product:{...product},quantity:1}]
     }
-    this.calculateTotal();
-    this.saveSession();
+    // this.calculateTotal();
+    // this.saveSession();
 
   } 
 
   OnDeleteCart(id:number):void{
     this.items=this.items.filter(item  => item.product.id != id);
-    this.calculateTotal()
-    this.saveSession();
+    // this.calculateTotal()
+    // this.saveSession();
+    if(this.items.length==0){
+      sessionStorage.removeItem('cart');
+      sessionStorage.clear();
+    }
   
   }
-  calculateTotal():void{
-    this.total=this.items.reduce((accumulator,item)=>accumulator+item.quantity*item.product.price,0);
-  }
-  saveSession():void{
-    // guardar datos en sessionStorage
-      sessionStorage.setItem('cart',JSON.stringify(this.items))
-  }
+  // calculateTotal():void{
+  //   this.total=this.items.reduce((accumulator,item)=>accumulator+item.quantity*item.product.price,0);
+  // }
+  // saveSession():void{
+  //   // guardar datos en sessionStorage
+  //     sessionStorage.setItem('cart',JSON.stringify(this.items))
+  // }
   openCloseCart():void{
     this.showCart=!this.showCart
   }

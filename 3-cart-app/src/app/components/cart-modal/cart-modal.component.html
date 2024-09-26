@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-body">
                     @if(items.length>0){
-                    <cart [items]="items" [total]="total" (removeProductEventEmitter)="OnDeleteCart($event)"></cart>
+                    <cart [items]="items"(removeProductEventEmitter)="OnDeleteCart($event)"></cart>
                     }@else {
                     <div class="alert alert-warning ">No hay elementos en el carro</div>
                     }
